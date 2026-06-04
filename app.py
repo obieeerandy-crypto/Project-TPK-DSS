@@ -1,13 +1,11 @@
 """
-Universal Decision Support System (DSS) Dashboard.
-Main landing page initializing session states and showing a premium, interactive overview.
+Update app.py to use the new structure
 """
-
 import streamlit as st
 import pandas as pd
 from pathlib import Path
-from ui_components import inject_custom_css, render_header, kpi_card
-from data_loader import load_csv, auto_detect_columns
+from utils.ui_components import inject_custom_css, render_header, kpi_card
+from utils.data_loader import load_csv, auto_detect_columns
 
 # Page Configuration
 st.set_page_config(
@@ -48,7 +46,6 @@ if "weights" not in st.session_state:
 if "types" not in st.session_state:
     if "kriteria_cols" in st.session_state:
         st.session_state["types"] = {col: "benefit" for col in st.session_state["kriteria_cols"]}
-        # Default cost types for heart disease (e.g., age, oldpeak should be cost for low disease risk, or benefit depending on perspective. Let's make all default benefit first)
     else:
         st.session_state["types"] = {}
 
@@ -70,7 +67,7 @@ with col_left:
         <div class="glass-card">
             <h3>🚀 Tentang Dashboard DSS</h3>
             <p>
-                Dashboard ini dirancang untuk menyelesaikan masalah <b>Multi-Criteria Decision Making (MCDM)</b> secara dinamis. Anda dapat mengunggah dataset CSV Anda sendiri, mengonfigurasi krit[...]
+                Dashboard ini dirancang untuk menyelesaikan masalah <b>Multi-Criteria Decision Making (MCDM)</b> secara dinamis. Anda dapat mengunggah dataset CSV Anda sendiri, mengonfigurasi kriteria keputusan, dan membandingkan hasil dari tiga metode MCDM yang berbeda.
             </p>
             <p>
                 Sistem ini mendukung perbandingan langsung antara 3 metode pengambilan keputusan klasik yang populer:
@@ -78,7 +75,7 @@ with col_left:
             <ul>
                 <li><b>SAW (Simple Additive Weighting):</b> Metode penjumlahan terbobot dari rating kinerja pada setiap alternatif untuk semua kriteria.</li>
                 <li><b>WP (Weighted Product):</b> Metode perkalian terbobot untuk menghubungkan rating kriteria, di mana rating harus dipangkatkan terlebih dahulu dengan bobot kriteria.</li>
-                <li><b>TOPSIS (Technique for Order of Preference by Similarity to Ideal Solution):</b> Mengevaluasi alternatif berdasarkan jarak terdekat dari solusi ideal positif dan terjauh dari[...]</li>
+                <li><b>TOPSIS (Technique for Order of Preference by Similarity to Ideal Solution):</b> Mengevaluasi alternatif berdasarkan jarak terdekat dari solusi ideal positif dan terjauh dari solusi ideal negatif.</li>
             </ul>
             <p>Ditambah modul teori lengkap untuk mata kuliah <b>Teori Pengambilan Keputusan</b>:</p>
             <ul>
@@ -126,21 +123,6 @@ with col_left:
                     <td style="padding:8px; font-weight:bold; color:#b388ff;">5</td>
                     <td style="padding:8px;">📚 Teori & Metodologi</td>
                     <td style="padding:8px;">Rumus lengkap SAW, WP, TOPSIS, ELECTRE, AHP, Ketidakpastian, Risiko, dan Korelasi Peringkat.</td>
-                </tr>
-                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                    <td style="padding:8px; font-weight:bold; color:#b388ff;">6</td>
-                    <td style="padding:8px;">🎲 Keputusan Ketidakpastian</td>
-                    <td style="padding:8px;">Analisis Maximin, Maximax, Hurwicz, Laplace, Minimax Regret dengan tabel payoff kustom.</td>
-                </tr>
-                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                    <td style="padding:8px; font-weight:bold; color:#b388ff;">7</td>
-                    <td style="padding:8px;">🔺 AHP</td>
-                    <td style="padding:8px;">Pairwise comparison matrix, uji konsistensi (CR), dan derivasi bobot prioritas.</td>
-                </tr>
-                <tr>
-                    <td style="padding:8px; font-weight:bold; color:#b388ff;">8</td>
-                    <td style="padding:8px;">🎯 Keputusan Risiko</td>
-                    <td style="padding:8px;">Analisis EMV, EOL, dan EVPI dengan tabel payoff dan probabilitas kondisi alam.</td>
                 </tr>
             </table>
         </div>
