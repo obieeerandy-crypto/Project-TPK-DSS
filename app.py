@@ -6,8 +6,8 @@ Main landing page initializing session states and showing a premium, interactive
 import streamlit as st
 import pandas as pd
 from pathlib import Path
-from utils.ui_components import inject_custom_css, render_header, kpi_card
-from utils.data_loader import load_csv, auto_detect_columns
+from ui_components import inject_custom_css, render_header, kpi_card
+from data_loader import load_csv, auto_detect_columns
 
 # Page Configuration
 st.set_page_config(
@@ -70,7 +70,7 @@ with col_left:
         <div class="glass-card">
             <h3>🚀 Tentang Dashboard DSS</h3>
             <p>
-                Dashboard ini dirancang untuk menyelesaikan masalah <b>Multi-Criteria Decision Making (MCDM)</b> secara dinamis. Anda dapat mengunggah dataset CSV Anda sendiri, mengonfigurasi kriteria, mengatur bobot kepentingan, serta jenis kriteria (Benefit atau Cost).
+                Dashboard ini dirancang untuk menyelesaikan masalah <b>Multi-Criteria Decision Making (MCDM)</b> secara dinamis. Anda dapat mengunggah dataset CSV Anda sendiri, mengonfigurasi krit[...]
             </p>
             <p>
                 Sistem ini mendukung perbandingan langsung antara 3 metode pengambilan keputusan klasik yang populer:
@@ -78,7 +78,7 @@ with col_left:
             <ul>
                 <li><b>SAW (Simple Additive Weighting):</b> Metode penjumlahan terbobot dari rating kinerja pada setiap alternatif untuk semua kriteria.</li>
                 <li><b>WP (Weighted Product):</b> Metode perkalian terbobot untuk menghubungkan rating kriteria, di mana rating harus dipangkatkan terlebih dahulu dengan bobot kriteria.</li>
-                <li><b>TOPSIS (Technique for Order of Preference by Similarity to Ideal Solution):</b> Mengevaluasi alternatif berdasarkan jarak terdekat dari solusi ideal positif dan terjauh dari solusi ideal negatif.</li>
+                <li><b>TOPSIS (Technique for Order of Preference by Similarity to Ideal Solution):</b> Mengevaluasi alternatif berdasarkan jarak terdekat dari solusi ideal positif dan terjauh dari[...]</li>
             </ul>
             <p>Ditambah modul teori lengkap untuk mata kuliah <b>Teori Pengambilan Keputusan</b>:</p>
             <ul>
